@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { WalletContext } from '../context/WalletContext';
+import nftImg from '../assets/nft-placeholder.svg';
 
 export default function NFTMint() {
   const { nfts, setNfts } = useContext(WalletContext);
@@ -11,6 +12,7 @@ export default function NFTMint() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-2">NFT Minting (Mock)</h2>
+      <img src={nftImg} alt="NFT placeholder" className="w-32 h-32 mb-2" />
       <button onClick={() => mint('seed')} disabled={nfts.seed} className="bg-gray-500 text-white px-2 py-1 mr-2">
         {nfts.seed ? 'Seed NFT Minted' : 'Mint Seed NFT'}
       </button>
