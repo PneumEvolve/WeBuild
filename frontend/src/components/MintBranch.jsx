@@ -1,10 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { WalletContext } from '../context/WalletContext';
 
 export default function MintBranch() {
   const { balances, setBalances } = useContext(WalletContext);
   const [amount, setAmount] = useState('');
   const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    if (timer > 0) {
+      const id = setInterval(() => setTimer(t => t - 1), 1000);
+      return () => clearInterval(id);
+    }
+  }, [timer]);
 
   const handleMint = () => {
     const seedRequired = (amount * 0.8);

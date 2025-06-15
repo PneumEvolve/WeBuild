@@ -26,18 +26,27 @@ export default function App() {
 
   return (
     <WalletProvider>
-      <div className="p-4 font-sans">
-        <nav className="mb-4 space-x-2">
-          <button onClick={() => setPage('home')} className="underline">Home</button>
-          <button onClick={() => setPage('wallet')} className="underline">Wallet</button>
-          <button onClick={() => setPage('mint')} className="underline">Mint BRANCH</button>
-          <button onClick={() => setPage('redeem')} className="underline">Redeem BRANCH</button>
-          <button onClick={() => setPage('swap')} className="underline">Swap</button>
-          <button onClick={() => setPage('nft')} className="underline">NFTs</button>
-          <button onClick={() => setPage('ai')} className="underline">AI Access</button>
-          <button onClick={() => setPage('gov')} className="underline">Governance</button>
+      <div className="p-4 font-sans max-w-3xl mx-auto">
+        <nav className="mb-4 flex flex-wrap gap-2">
+          {Object.keys(pages).map(key => (
+            <button
+              key={key}
+              onClick={() => setPage(key)}
+              className={`px-2 py-1 rounded text-sm border ${page === key ? "bg-blue-600 text-white" : "bg-white text-blue-600"}`}
+            >
+              {key === 'mint'
+                ? 'Mint BRANCH'
+                : key === 'redeem'
+                ? 'Redeem BRANCH'
+                : key === 'gov'
+                ? 'Governance'
+                : key.charAt(0).toUpperCase() + key.slice(1)}
+            </button>
+          ))}
         </nav>
-        <Page />
+        <div className="bg-white p-4 rounded shadow">
+          <Page />
+        </div>
       </div>
     </WalletProvider>
   );
